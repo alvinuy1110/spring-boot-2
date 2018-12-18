@@ -23,6 +23,7 @@
 
   <modules>
     <module>web</module>
+    <module>jpa</module>
   </modules>
   <dependencies>
     <dependency>

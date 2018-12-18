@@ -21,9 +21,11 @@ Spring boot examples with various demos.
 # Features
 - [Actuator](#actuator)
 - [Banner](#banner)
+- [JPA Module](jpa/README.md)
 - [Logging](#logging)
 - [Properties](#properties)
 - [Web Controller](#web_controller)
+
 
 ## Recommended Order of Learning
 
@@ -34,7 +36,7 @@ Spring boot examples with various demos.
     * Properties
     * Web controller
 
-2.
+2. JPA module
 
 
 
@@ -186,9 +188,7 @@ logging.level.org.apache.http=DEBUG
 
 * Security
 * JPA
-    * connection pool
     * pagination
-    * H2
 * Cache
 * Redis
 * RabbitMQ
