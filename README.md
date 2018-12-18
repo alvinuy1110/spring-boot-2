@@ -17,14 +17,24 @@ Spring boot examples with various demos.
 * Logging uses the SLF4J framework
 
 
-## Features
-
 
 # Features
 - [Actuator](#actuator)
 - [Banner](#banner)
 - [Logging](#logging)
 - [Properties](#properties)
+- [Web Controller](#web_controller)
+
+## Recommended Order of Learning
+
+1. Web project module
+    * Actuator
+    * Banner
+    * Logging
+    * Properties
+    * Web controller
+
+2.
 
 
 
@@ -63,6 +73,19 @@ management.health.status.http-mapping.FATAL=503
 ```
 # to customize HTTP status
 management.health.status.http-mapping.UNKNOWN=503
+```
+
+#### Info
+
+##### Git Information
+
+Reference: https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info
+
+```
+#### Whether to enable git info. (default: true)
+management.info.git.enabled=true
+#### Mode to use to expose git information. (values: simple, full), default:simple
+management.info.git.mode=simple
 ```
 
 ### Security
@@ -127,10 +150,40 @@ public class LocalDateConverter implements Converter<String, LocalDate> {
 You can also check out the @Value example.
 
 
+## <a name="web_controller"/> Web Controller
+
+This is more geared towards API purposes rather than serving up web pages.
+
+### Controller
+
+See "com.myproject.springboot.web.controller.MyPropertiesController"
+
+### Testing
+
+See "com.myproject.springboot.web.controller.MyPropertiesControllerTest"
+
+### HTTP Client
+The underlying http client will be the apache httpComponents to provide more functionality.
+Used for RestTemplate and TestRemplate.
+
+```
+   <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+```
+
+#### Logging
+
+Enable the properties similar to:
+```
+logging.level.org.apache.http=DEBUG
+```
+
 
 ## TODO
 
-* Web
 * Security
 * JPA
     * connection pool
@@ -146,7 +199,8 @@ You can also check out the @Value example.
 * Sonar
 * Email
 * Task scheduler
-* Thymeleaf
+* Web MVC
+    * Thymeleaf
 
 ### Others
 
