@@ -2,12 +2,29 @@
 
 Spring boot examples with various demos.
 
+## General References
+
+* https://docs.spring.io/spring-boot/docs/current/reference/html/
+* https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+## General Notes
+
+* Lombok is used to simplify code
+* Testing uses the following:
+    * testNG
+    * assertJ
+    * Mockito
+* Logging uses the SLF4J framework
+
+
 ## Features
 
 
 # Features
 - [Actuator](#actuator)
-
+- [Banner](#banner)
+- [Logging](#logging)
+- [Properties](#properties)
 
 
 
@@ -27,7 +44,26 @@ This is appended to the servlet context path. If for example the servlet context
 
 ### Endpoints
 
-THe main endpoint (e.g. '/actuator') will give you a list of actuator endpoints exposed and their url.
+THe discovery page endpoint (e.g. '/actuator') will give you a list of actuator endpoints exposed and their url in hypermedia form.
+
+#### Health
+
+* use HealthStatusHttpMapper if you want more programmatic control
+* modify the HealthAggregator if need to use custom status
+* when using properties,
+```
+# to add custom status and order from severe to ok
+management.health.status.order=FATAL, DOWN, OUT_OF_SERVICE, UNKNOWN, UP
+
+# to customize HTTP status
+management.health.status.http-mapping.FATAL=503
+```
+
+* By default, "UNKNOWN" status returns HTTP 200, which may lead to undesired behavior.  To change just add,
+```
+# to customize HTTP status
+management.health.status.http-mapping.UNKNOWN=503
+```
 
 ### Security
 
@@ -35,12 +71,67 @@ THe main endpoint (e.g. '/actuator') will give you a list of actuator endpoints 
 
 
 
+## <a name="banner"/> Banner
+
+Reference: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-spring-application.html#boot-features-banner
+
+This is to customize the banner shown at start up.  The simplest approach is replace the file 'banner.txt' under 'src/main/resources'
+
+For fancy text, you can use https://devops.datenkollektiv.de/banner.txt/index.html or something similar.
+
+
+
+
+## <a name="logging"/> Logging
+
+Reference: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html
+
+The environment property "logging.config" allows to have an external configuration to be loaded
+
+
+
+## <a name="properties"/> Properties
+
+Reference: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+
+### @Value annotation
+
+See "com.myproject.springboot.web.property.MyPropertiesValue".
+
+### Custom Properties
+
+Custom properties can be loaded by using '@ConfigurationProperties'. See "com.myproject.springboot.web.property.MyProperties".
+See "com.myproject.springboot.web.property.MyPropertiesTest" for more demo/ explanation.
+
+### Date converter
+
+
+##### using @ConfigurationProperties
+
+Can be done but will have to write a code like this.
+
+```
+@Component
+@ConfigurationPropertiesBinding
+public class LocalDateConverter implements Converter<String, LocalDate> {
+
+    @Override
+    public LocalDate convert(String timestamp) {
+        return LocalDate.parse(timestamp);
+    }
+}
+```
+
+##### using @Value
+
+You can also check out the @Value example.
+
+
+
 ## TODO
 
 * Web
-* Logging
 * Security
-* Properties
 * JPA
     * connection pool
     * pagination
