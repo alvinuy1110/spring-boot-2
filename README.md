@@ -188,8 +188,6 @@ logging.level.org.apache.http=DEBUG
 ## TODO
 
 * Security
-* Cache
-* Redis
 * RabbitMQ
 * Testing
     * Unit Test

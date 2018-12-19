@@ -88,10 +88,18 @@ By default, uses Lettuce instead of Jedis
 ### Redis
 #Redis specific configurations
 
-spring.redis.host=localhost
-spring.redis.port=6379
-spring.redis.password=
+### using single server
+#spring.redis.host=localhost
+#spring.redis.port=6379
+#spring.redis.password=
 
+
+### using sentinel
+spring.redis.sentinel.master=some_name
+spring.redis.sentinel.nodes=dev1:36699,dev2:36699,dev3:36699
+spring.redis.password=somepassword
+
+### lettuce config
 spring.redis.lettuce.pool.max-active=7
 spring.redis.lettuce.pool.max-idle=7
 spring.redis.lettuce.pool.min-idle=2
