@@ -1,0 +1,33 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+  updateCheck="false" monitoring="autodetect" dynamicConfig="true">
+
+  <diskStore path="java.io.tmpdir" />
+
+  <!-- This is used by statistics monitoring -->
+  <!-- <cacheManagerPeerListenerFactory class="org.terracotta.ehcachedx.monitor.probe.ProbePeerListenerFactory" -->
+  <!-- properties="monitorAddress=forester, monitorPort=9889, memoryMeasurement=true"/> -->
+
+  <!--
+    Handy chart!
+    1 hour in seconds: 3600
+    1 days in seconds: 86400
+    7 days in seconds: 604800
+   -->
+
+  <defaultCache maxElementsInMemory="1000" timeToIdleSeconds="43200"
+    timeToLiveSeconds="43200" memoryStoreEvictionPolicy="LRU"
+    maxElementsOnDisk="0" overflowToDisk="false" eternal="false"
+    diskSpoolBufferSizeMB="0" diskPersistent="false"
+    diskExpiryThreadIntervalSeconds="120" statistics="false" />
+
+
+  <cache name="cache1" maxElementsInMemory="1000"
+    maxElementsOnDisk="0" eternal="false" overflowToDisk="false"
+    diskSpoolBufferSizeMB="0" timeToIdleSeconds="43200" timeToLiveSeconds="43200"
+    memoryStoreEvictionPolicy="LRU" transactionalMode="off" statistics="true">
+  </cache>
+
+
+
+</ehcache>

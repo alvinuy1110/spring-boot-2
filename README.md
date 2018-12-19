@@ -21,6 +21,7 @@ Spring boot examples with various demos.
 # Features
 - [Actuator](#actuator)
 - [Banner](#banner)
+- [Cache Module](cache/README.md)
 - [JPA Module](jpa/README.md)
 - [Logging](#logging)
 - [Properties](#properties)

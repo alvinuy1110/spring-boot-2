@@ -24,6 +24,7 @@
   <modules>
     <module>web</module>
     <module>jpa</module>
+    <module>cache</module>
   </modules>
   <dependencies>
     <dependency>
