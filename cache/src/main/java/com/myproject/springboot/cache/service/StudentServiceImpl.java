@@ -27,8 +27,23 @@ public class StudentServiceImpl implements StudentService {
         return student;
 
     }
+
+    @Override
+    @Cacheable(value = "cache2")
+    public Student getStudent2(long id) {
+        log.info("Retrieving student2 with id {}", id);
+
+        Student student = new Student();
+        student.setId(id);
+        student.setFirstName("FirstName");
+        student.setLastName("LastName");
+        student.setStudentNumber("456JJJ");
+
+        return student;
+
+    }
     @CacheEvict(value = "cache1")
-    public void evict(String irn) {
+    public void evictStudent1() {
 
     }
 }

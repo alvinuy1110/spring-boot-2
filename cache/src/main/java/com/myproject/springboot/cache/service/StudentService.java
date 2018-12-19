@@ -6,4 +6,6 @@ public interface StudentService {
 
     Student getStudent(long id);
 
+    Student getStudent2(long id);
+
 }

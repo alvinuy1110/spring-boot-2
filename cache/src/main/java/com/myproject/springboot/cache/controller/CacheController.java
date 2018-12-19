@@ -26,8 +26,12 @@ public class CacheController {
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
     public ResponseEntity<Student> getStudent(@PathVariable(value = "id") Long id) {
-
-        Student student = studentService.getStudent(id);
+        Student student =null;
+        if (id ==2) {
+            student = studentService.getStudent2(id);
+        } else {
+            student = studentService.getStudent(id);
+        }
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
