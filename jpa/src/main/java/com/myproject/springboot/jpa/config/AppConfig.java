@@ -3,6 +3,8 @@ package com.myproject.springboot.jpa.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.myproject.springboot.jpa.service.StudentPagingService;
+import com.myproject.springboot.jpa.service.StudentPagingServiceImpl;
 import com.myproject.springboot.jpa.service.StudentService;
 import com.myproject.springboot.jpa.service.StudentServiceImpl;
 
@@ -15,5 +17,10 @@ public class AppConfig {
     @Bean
     public StudentService studentService() {
         return new StudentServiceImpl();
+    }
+
+    @Bean
+    public StudentPagingService studentPagingService() {
+        return new StudentPagingServiceImpl();
     }
 }

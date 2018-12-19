@@ -187,8 +187,6 @@ logging.level.org.apache.http=DEBUG
 ## TODO
 
 * Security
-* JPA
-    * pagination
 * Cache
 * Redis
 * RabbitMQ

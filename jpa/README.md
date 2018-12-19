@@ -29,6 +29,17 @@ This will demonstrate creating a simple JPA entity/entities and expose these via
  - [Controller Advice](#controller_advice)
  - [Controller Testing](#controller_testing)
 
+* Pagination support
+ - create the repository
+    - "StudentPagingRepository"
+ - create the service
+    - "StudentPagingServiceImpl"
+ - create the controller
+    - modify the StudentController
+ - customize the paging behavior
+    - see SpringMvcConfig, PageImplJacksonSerializer, SortJacksonDeserializer
+
+
 ## Postman API
 
 API examples in Postman format are found in "support" directory.
