@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
@@ -19,11 +20,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * * AbstractTestNGSpringContextTests - to hook TestNG and Spring together
  * * @Test - to trigger TestNG
+ * * TestEntityManager - testing utility to help interact with the test data (like setting up certain states)
  */
 @Test
 @DataJpaTest
 @Slf4j
 public class StudentRepositoryTest extends AbstractTestNGSpringContextTests {
+
+    @Autowired
+    private TestEntityManager testEntityManager;
 
     @Autowired
     private StudentRepository studentRepository;

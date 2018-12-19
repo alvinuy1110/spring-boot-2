@@ -4,11 +4,12 @@ This will demonstrate creating a simple JPA entity/entities and expose these via
 
 ## Package structure
 
-* domain - contains the domain
 * config - spring application configuration/s
+* controller - web layer exposed as REST API
+* domain - contains the domain object used at API level
 * entity - contains the entity that represents the table in java form
 * repository - spring jpa repositories to interact with the datasource
-* controller - web layer exposed as REST API
+* service - business layer that contains business logic
 
 ## Order of Learning
 
@@ -20,9 +21,17 @@ This will demonstrate creating a simple JPA entity/entities and expose these via
  - [JPA Entity](#jpa_entity)
  - [JPA Repository](#jpa_repository)
 
-* Test the Repository
+* Create the Service layer
+ - [Service Layer](#service_layer)
 
-TODO: do crud operation
+* Create the Controller
+ - [Controller Layer](#controller_layer)
+ - [Controller Advice](#controller_advice)
+ - [Controller Testing](#controller_testing)
+
+## Postman API
+
+API examples in Postman format are found in "support" directory.
 
 
 ## <a name="datasource_configuration"/> Datasource
@@ -94,3 +103,31 @@ For the JPA entity example, refer to "com.myproject.springboot.jpa.entity.Studen
 ## <a name="jpa_repository"/> JPA Repository
 
 For the JPA repository example, refer to "com.myproject.springboot.jpa.repository.StudentRepository"
+
+### Testing
+
+See the "com.myproject.springboot.jpa.repository.StudentRepositoryTest"
+
+
+## <a name="service_layer"/> Service layer
+
+* The StudentServiceImpl is the main business logic
+* The StudentServiceImpl is registered as a Spring Bean in the "com.myproject.springboot.jpa.config.AppConfig"
+
+
+## <a name="controller_layer"/> Controller layer
+
+* The StudentController is the main entry point for the REST API
+
+
+## <a name="controller_advice"/> Controller Advice
+
+* The GlobalExceptionHandler is the main error handling for all Controllers
+
+
+## <a name="controller_testing"/> Controller Testing
+
+* The AbstractControllerTest contains common logic for performing unit testing of controllers
+* The StudentControllerTest demonstrates how a client tests the controller with mocks
+
+
