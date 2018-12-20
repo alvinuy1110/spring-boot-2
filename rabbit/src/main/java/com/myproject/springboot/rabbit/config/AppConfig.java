@@ -1,10 +1,14 @@
 package com.myproject.springboot.rabbit.config;
 
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myproject.springboot.rabbit.service.BaseMessageRetryHandler;
 import com.myproject.springboot.rabbit.service.MessageReceiver;
+import com.myproject.springboot.rabbit.service.MessageRetryHandler;
 import com.myproject.springboot.rabbit.service.MessageService;
 import com.myproject.springboot.rabbit.service.MessageServiceImpl;
 import com.myproject.springboot.rabbit.util.ObjectMapperHelper;
@@ -31,4 +35,5 @@ public class AppConfig {
     public MessageReceiver messageReceiver() {
         return new MessageReceiver();
     }
+
 }

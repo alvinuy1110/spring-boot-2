@@ -188,7 +188,6 @@ logging.level.org.apache.http=DEBUG
 ## TODO
 
 * Security
-* RabbitMQ
 * Testing
     * Unit Test
     * Integration Test

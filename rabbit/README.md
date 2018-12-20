@@ -26,7 +26,7 @@ This will demonstrate using Spring AMQP with RabbitMQ specifics
 
 * [Add the Consumers](#consumer)
 
-
+* [Retry](#retry)
 
 ## <a name="setup"/> Setup
 
@@ -75,6 +75,7 @@ You can configure your app to auto-create them for you.  Do this by
         return new RabbitAdmin(connectionFactory);
     }
 ```
+Note: queues/ exchanges already existing will not be replaced, unless programatically done.
 
 See "RabbitConfig"
 
@@ -151,6 +152,38 @@ public void receiveMessage(MessageEvent message, Message rawMessage, MessageHead
 ```
 
 See "MessageReceiver"
+
+
+## <a name="retry"/> Retry
+
+RabbitMQ does not behave like the traditional JMS where retries are handled.  To replicate a similar solution/ pattern, we will try to implement this way.
+
+See https://www.brianstorti.com/rabbitmq-exponential-backoff/
+
+### Define the Consumer
+
+See "MessageReceiver.receiveMessageWithRetry"
+
+### Define the Exchanges/ Queues
+
+See "RabbitConfig" for additional definition
+
+The retry exchange and queue can be globally used, since the messages contain the real info
+
+
+### Define the Retry Handler
+
+The full retry logic is found in "BaseMessageRetryHandler".
+This will do the following:
+
+* dynamically create temporary queues
+* has its own listener that is associated to the original queue and the temporary queues
+* once retry limit exceeded, will send to a global dead letter queue
+  * here messages can eventually be expired to auto clean-up
+
+### Triggering the demo
+
+See "MessageServiceImplTest.publish_and_consume_withException"
 
 
 
