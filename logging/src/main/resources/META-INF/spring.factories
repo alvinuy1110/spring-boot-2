@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.myproject.springboot.logging.config.MDCMarkerAutoConfiguration,\
+com.myproject.springboot.logging.config.MDCLoggingFilterAutoConfiguration

@@ -22,24 +22,30 @@ Spring boot examples with various demos.
 - [Actuator](#actuator)
 - [Banner](#banner)
 - [Cache Module](cache/README.md)
+- [Distributed Tracing](#distributed_tracing)
 - [JPA Module](jpa/README.md)
 - [Logging](#logging)
+- Messaging
+    - [ActiveMQ](activemq/README.md)
+    - [Rabbit](rabbit/README.md)
 - [Properties](#properties)
+- [SOAP Module](soap/README.md)
 - [Web Controller](#web_controller)
 
 
 ## Recommended Order of Learning
 
 1. Web project module
+    * Properties
     * Actuator
     * Banner
     * Logging
-    * Properties
     * Web controller
 
 2. JPA module
-
-
+3. Cache module
+4. Messaging module
+5. SOAP module
 
 ## <a name="actuator"/> Actuator
 
@@ -76,6 +82,51 @@ management.health.status.http-mapping.FATAL=503
 ```
 # to customize HTTP status
 management.health.status.http-mapping.UNKNOWN=503
+```
+
+##### Health Detailed Output
+
+The detailed health JSON output has changed
+
+From
+```
+{
+"status": "DOWN",
+"diskSpace": {
+    "status": "UP",
+    "total": 1073741824,
+    "free": 891428864,
+    "threshold": 10485760
+    },
+"db": {
+    "status": "UP",
+    "database": "DB2 UDB for AS/400",
+    "hello": 1
+}
+}
+```
+
+To
+```
+{
+"status": "UP",
+"details": {
+    "diskSpace": {
+        "status": "UP",
+        "details": {
+            "total": 48675848192,
+            "free": 1731813376,
+            "threshold": 10485760
+            }
+        },
+    "db": {
+        "status": "UP",
+        "details": {
+            "database": "DB2 UDB for AS/400",
+            "hello": 1
+            }
+        }
+}
 ```
 
 #### Info
@@ -183,6 +234,35 @@ Enable the properties similar to:
 ```
 logging.level.org.apache.http=DEBUG
 ```
+
+
+
+## <a name="distributed_tracing"/> Distributed Tracing
+
+Reference: https://cloud.spring.io/spring-cloud-sleuth/single/spring-cloud-sleuth.html
+
+This section talks about Spring Sleuth for distributed tracing.  This allows adding information to provide correlation of requests across microservices.
+
+See TracingController.
+
+### Terminology
+
+* Span - basic unit/ segment of work
+* Trace - a set of spans
+* Application name - name of the app (i.e. spring.application.name)
+
+### Format
+
+Typically, the log format is '[<app_name>, <trace>, <span>, <exportable_flag>]'.
+
+If using SLF4J, the MDC is already populated.
+
+Notice the [appname,traceId,spanId,exportable] entries from the MDC:
+
+spanId: The ID of a specific operation that took place.
+appname: The name of the application that logged the span.
+traceId: The ID of the latency graph that contains the span.
+exportable: Whether the log should be exported to Zipkin. When would you like the span not to be exportable? When you want to wrap some operation in a Span and have it written to the logs only.
 
 
 ## TODO
