@@ -6,6 +6,8 @@ function startConnect() {
   // Fetch the hostname/IP address and port number from the form
   host = document.getElementById("host").value;
   port = document.getElementById("port").value;
+  username = document.getElementById("username").value;
+  password = document.getElementById("password").value;
 
   // Print output for the user in the messages div
   document.getElementById("messages").innerHTML += '<span>Connecting to: ' + host + ' on port: ' + port + '</span><br/>';
@@ -20,6 +22,11 @@ function startConnect() {
 
   // Connect the client, if successful, call onConnect function
   client.connect({
+
+    // useSSL: true,
+    userName: username,
+    password: password,
+    cleanSession: false,
     onSuccess: onConnect,
   });
 }
@@ -50,7 +57,7 @@ function subscribe() {
   document.getElementById("messages").innerHTML += '<span>Subscribing to: ' + topic + '</span><br/>';
 
   // put settings
-  
+
   client.subscribe(topic, {qos: 2});
   updateScroll(); // Scroll to bottom of window
 }
