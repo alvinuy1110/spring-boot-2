@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mqtt-demo: A simple web application that can subscribe to topics from an MQTT broker over websockets</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>-->
+    <script src="js/mqttws31.min.js" type="text/javascript"></script>
+    <script src="js/mqtt.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      
+
+      <div class="split left">
+        <h1>mqtt-demo</h1>
+        <form id="connection-information-form">
+          <b>Hostname or IP Address:</b>
+          <input id="host" type="text" name="host" value="localhost">
+          <br>
+          <b>Port:</b>
+          <input id="port" type="text" name="port" value="1883">
+          <br>
+          <!--<b>Topic:</b>-->
+          <!--<input id="topic" type="text" name="topic" value="#"><br><br>-->
+          <input type="button" onclick="startConnect()" value="Connect">
+          <input type="button" onclick="startDisconnect()" value="Disconnect">
+          <!--</form>-->
+
+          <!--<form id="pub-sub-form" class="pure-form">-->
+          <!--<fieldset>-->
+          <!--<legend>Connect / Disconnect</legend>-->
+          <!--<button class="pure-button btn-connect">connect</button>-->
+          <!--<button class="pure-button btn-disconnect">disconnect</button>-->
+          <!--</fieldset>-->
+
+          <!--<fieldset>-->
+          <!--<legend>MQTT broker on websocket</legend>-->
+          <!--<label>-->
+          <!--Address:-->
+          <!--<input type="text" class="input-broker-ws" value="ws://broker.hivemq.com:8000/mqtt"></label>-->
+          <!--</fieldset>-->
+
+          <fieldset>
+            <legend>Subscribe / Unsubscribe</legend>
+            <label>
+              Topic:
+              <input id="subTopic" type="text" class="input-topic-sub" value="sample/#">
+            </label>
+            <input type="button" class="pure-button btn-subscribe" onclick="subscribe()" value="Subscribe">
+            <input type="button" class="pure-button btn-unsubscribe" onclick="unsubscribe()" value="Unsubscribe">
+            <!--<button class="pure-button btn-subscribe" onclick="subscribe()">subscribe</button>-->
+            <!--<button class="pure-button btn-unsubscribe" onclick="unsubscribe()">unsubscribe</button>-->
+          </fieldset>
+
+          <fieldset>
+            <legend>Publish</legend>
+            <label>
+              Topic:
+              <input id="pubTopic" type="text" class="input-topic-pub" value="sample/mqtt">
+            </label>
+            <label>
+              Message:
+              <input id="pubMessage" type="text" class="input-message" value="this is a test">
+            </label>
+            <input type="button" onclick="publish()" value="Publish">
+            <!--<button class="pure-button btn-publish" onclick="publish()">publish</button>-->
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="split right">
+        <div id="messages"></div>
+      </div>
+  </body>
+</html>
