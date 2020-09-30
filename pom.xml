@@ -31,6 +31,8 @@
     <module>activemq</module>
     <module>logging</module>
     <module>events</module>
+    <module>sse</module>
+    <module>mqtt</module>
   </modules>
   <dependencies>
     <dependency>
